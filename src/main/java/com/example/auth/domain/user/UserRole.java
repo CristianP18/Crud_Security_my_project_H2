@@ -2,7 +2,9 @@ package com.example.auth.domain.user;
 
 public enum UserRole {
     ADMIN("admin"),
-    USER("user");
+    USER("user"),
+    ORACAO("oracao"),
+    SCHOOL("school");
 
     private String role;
 
@@ -14,3 +16,4 @@ public enum UserRole {
         return role;
     }
 }
+

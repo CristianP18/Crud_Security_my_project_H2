@@ -29,17 +29,22 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/pedido_oracao").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/product").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/alunos").hasRole("SCHOOL")
+                        .requestMatchers(HttpMethod.GET, "/professores").hasRole("SCHOOL")
                         .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/alunos").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/professores").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/pedido_oracao").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/alunos").hasRole("SCHOOL")
+                        .requestMatchers(HttpMethod.POST, "/professores").hasRole("SCHOOL")
+                        .requestMatchers(HttpMethod.GET, "/pedido_oracao").hasRole("ORACAO")
                         
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
+    
+    
+    
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
