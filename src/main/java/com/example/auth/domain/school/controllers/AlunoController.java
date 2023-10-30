@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.auth.domain.school.entities.Aluno;
 import com.example.auth.domain.school.repositories.AlunoRepository;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 
 
 
 @RestController
 @RequestMapping(value = "/alunos")
+@SecurityRequirement(name="bearer-key")
 public class AlunoController {
 
     @Autowired

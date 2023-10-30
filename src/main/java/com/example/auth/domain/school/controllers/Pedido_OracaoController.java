@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.auth.domain.school.entities.Pedido_Oracao;
 import com.example.auth.domain.school.repositories.Pedido_OracaoRepository;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 
 @RestController
 @RequestMapping(value = "/pedido_oracao")
@@ -51,6 +53,7 @@ public ResponseEntity<Pedido_Oracao> insert(@Validated @RequestBody Pedido_Oraca
 }
 
 @PutMapping("/{id}")
+@SecurityRequirement(name="bearer-key")
 public ResponseEntity<Pedido_Oracao> updatePedido(@PathVariable Long id, @Validated @RequestBody Pedido_Oracao updatedPedido) {
     Optional<Pedido_Oracao> optionalPedido = repository.findById(id);
 
@@ -65,6 +68,7 @@ public ResponseEntity<Pedido_Oracao> updatePedido(@PathVariable Long id, @Valida
     }
 }
 @DeleteMapping("/{id}")
+@SecurityRequirement(name="bearer-key")
 public ResponseEntity<Void> deletePedido(@PathVariable Long id) {
     Optional<Pedido_Oracao> optionalPedido = repository.findById(id);
 

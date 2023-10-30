@@ -17,6 +17,7 @@ import com.example.auth.domain.user.User;
 import com.example.auth.infra.security.TokenService;
 import com.example.auth.repositories.UserRepository;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
@@ -40,6 +41,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
+    @SecurityRequirement(name="bearer-key")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
         if(this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 

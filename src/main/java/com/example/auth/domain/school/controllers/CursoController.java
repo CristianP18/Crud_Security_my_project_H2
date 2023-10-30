@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.auth.domain.school.entities.Curso;
 import com.example.auth.domain.school.repositories.CursoRepository;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 
 @RestController
 @RequestMapping("/cursos")
+@SecurityRequirement(name="bearer-key")
 public class CursoController {
 
     @Autowired
